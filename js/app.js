@@ -33,10 +33,12 @@ var Player = function (){
     this.sprite = 'images/char-boy.png';
 
 }
-Player.prototype.update = function(){
+Player.prototype.update = function(dx,dy){
     /* body... */
+    //this.x = dx;
+    //this.y = dy;
+    player.render();
     
-    this.y = this.y - 83;
 };
 
 Player.prototype.render = function(){
@@ -44,9 +46,19 @@ Player.prototype.render = function(){
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function(){
+Player.prototype.handleInput = function(keyCode){
     /* body... */
-
+    console.log(keyCode); //
+    if (keyCode === 'right') {
+        this.x = this.x + 100;
+    } else if (keyCode === 'left') {
+        this.x = this.x - 100;
+    } else if (keyCode === 'up') {
+        this.y = this.y - 83;
+    } else if (keyCode === 'down') {
+        this.y = this.y + 83;
+    };
+    console.log(this.x,this.y);
 };
 
 // Now instantiate your objects.
