@@ -28,16 +28,14 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 var Player = function (){
-    this.x = 200;
-    this.y = 400;
+    this.x = 202;
+    this.y = 402;
     this.sprite = 'images/char-boy.png';
 
 }
-Player.prototype.update = function(dx,dy){
+Player.prototype.update = function(){
     /* body... */
-    //this.x = dx;
-    //this.y = dy;
-    player.render();
+    
     
 };
 
@@ -49,13 +47,14 @@ Player.prototype.render = function(){
 Player.prototype.handleInput = function(keyCode){
     /* body... */
     console.log(keyCode); //
-    if (keyCode === 'right') {
-        this.x = this.x + 100;
-    } else if (keyCode === 'left') {
-        this.x = this.x - 100;
-    } else if (keyCode === 'up') {
+   
+    if (keyCode === 'right' && this.x != 404) {
+        this.x = this.x + 101;
+    } else if (keyCode === 'left' && this.x != 0) {
+        this.x = this.x - 101;
+    } else if (keyCode === 'up' && this.y != -13) {
         this.y = this.y - 83;
-    } else if (keyCode === 'down') {
+    } else if (keyCode === 'down' && this.y != 402) {
         this.y = this.y + 83;
     };
     console.log(this.x,this.y);
