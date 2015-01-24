@@ -22,8 +22,10 @@ Enemy.prototype.update = function(dt) {
 
     this.x = this.x + ((100 + this.speed) * dt);
     //Reset position of Enemy back to left side of play area
+    // and rerandomize speed
     if (this.x > 505) {
         this.x = -30;
+        this.speed = Math.random() * 100;
     }
     //console.log(this.name, this.x);
 
