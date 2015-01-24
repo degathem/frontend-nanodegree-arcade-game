@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x,y,speed,name) {
+var Enemy = function(x,y,name) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -8,7 +8,7 @@ var Enemy = function(x,y,speed,name) {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
-    this.speed = speed;
+    this.speed = Math.random() * 100;
     this.name = name;
 
 }
@@ -21,7 +21,10 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     this.x = this.x + ((100 + this.speed) * dt);
-    
+    //Reset position of Enemy back to left side of play area
+    if (this.x > 505) {
+        this.x = -30;
+    }
     //console.log(this.name, this.x);
 
 }
@@ -74,7 +77,7 @@ Player.prototype.handleInput = function(keyCode){
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var allEnemies = [new Enemy(0,60,10,"pookie"),new Enemy(0,143,50,'mcguyver'),new Enemy(0,226,100,'lala')];
+var allEnemies = [new Enemy(-100,60,"pookie"),new Enemy(-100,143,'mcguyver'),new Enemy(-100,226,'lala')];
 var player = new Player();
 
 // This listens for key presses and sends the keys to your
