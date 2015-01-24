@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x,y,speed) {
+var Enemy = function(x,y,speed,name) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -9,6 +9,7 @@ var Enemy = function(x,y,speed) {
     this.x = x;
     this.y = y;
     this.speed = speed;
+    this.name = name;
 
 }
 
@@ -20,7 +21,8 @@ Enemy.prototype.update = function(dt) {
     // all computers.
 
     this.x = this.x + ((100 + this.speed) * dt);
-    //console.log(dt);
+    
+    //console.log(this.name, this.x);
 
 }
 
@@ -66,18 +68,13 @@ Player.prototype.handleInput = function(keyCode){
     console.log(this.x,this.y);
 }
 
-Player.prototype.render = function(){
 
-}
 
-Player.prototype.handleInput = function(){
-
-}
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var allEnemies = [new Enemy(0,60,10),new Enemy(0,143,50),new Enemy(0,226,100)];
+var allEnemies = [new Enemy(0,60,10,"pookie"),new Enemy(0,143,50,'mcguyver'),new Enemy(0,226,100,'lala')];
 var player = new Player();
 
 // This listens for key presses and sends the keys to your
