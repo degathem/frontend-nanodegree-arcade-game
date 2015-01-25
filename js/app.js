@@ -88,7 +88,7 @@ Player.prototype.handleInput = function(keyCode){
     console.log(this.x,this.y);
 }
 
-//TODO COMMENT
+// Method which resets the player's position back to the starting position
 Player.prototype.initializePosition = function(){
     
     this.x = 202;
