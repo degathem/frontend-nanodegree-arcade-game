@@ -33,6 +33,7 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x = this.x + ((100 + this.speed) * dt);
+    
     //Reset position of Enemy back to left side of play area
     // and rerandomize speed
     if (this.x > 505) {
@@ -40,7 +41,6 @@ Enemy.prototype.update = function(dt) {
         this.y = this.randomizeRow();
         this.speed = Math.random() * 100;
     }
-    //console.log(this.name, this.x);
 
 }
 
@@ -55,14 +55,15 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 
 var Player = function (){
-    this.x = 202;
-    this.y = 402;
+    this.initializePosition();
     this.sprite = 'images/char-boy.png';
-
+    this.lastMoveTime;
 }
 
 Player.prototype.update = function(){
-
+    if (this.y === -13) {
+        this.initializePosition(); 
+    };
 }
 
 
@@ -73,8 +74,8 @@ Player.prototype.render = function(){
 
 Player.prototype.handleInput = function(keyCode){
     /* body... */
-    console.log(keyCode); //
-   
+    
+    // TODO Comment
     if (keyCode === 'right' && this.x != 404) {
         this.x = this.x + 101;
     } else if (keyCode === 'left' && this.x != 0) {
@@ -87,7 +88,12 @@ Player.prototype.handleInput = function(keyCode){
     console.log(this.x,this.y);
 }
 
-
+//TODO COMMENT
+Player.prototype.initializePosition = function(){
+    
+    this.x = 202;
+    this.y = 402;
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
