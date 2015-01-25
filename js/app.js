@@ -1,13 +1,26 @@
 // Enemies our player must avoid
-var Enemy = function(x,y,name) {
+var Enemy = function(name) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.x = x;
-    this.y = y;
+    
+    this.randomizeRow = function(){
+        var rand = Math.random();
+        var row;
+        if (rand <= 0.333){
+            row = 60;
+        } else if (rand > 0.333 && rand <= 0.666){
+            row = 143;
+        } else {
+            row = 226;
+        };
+        return row;
+    };
+    this.x = -100;
+    this.y = this.randomizeRow();
     this.speed = Math.random() * 100;
     this.name = name;
 
@@ -19,12 +32,12 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-
     this.x = this.x + ((100 + this.speed) * dt);
     //Reset position of Enemy back to left side of play area
     // and rerandomize speed
     if (this.x > 505) {
-        this.x = -30;
+        this.x = -100;
+        this.y = this.randomizeRow();
         this.speed = Math.random() * 100;
     }
     //console.log(this.name, this.x);
@@ -35,6 +48,7 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 }
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -79,7 +93,7 @@ Player.prototype.handleInput = function(keyCode){
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-var allEnemies = [new Enemy(-100,60,"pookie"),new Enemy(-100,143,'mcguyver'),new Enemy(-100,226,'lala')];
+var allEnemies = [new Enemy("pookie"),new Enemy('mcguyver'),new Enemy('lala')];
 var player = new Player();
 
 // This listens for key presses and sends the keys to your
@@ -94,3 +108,4 @@ document.addEventListener('keyup', function(e) {
 
     player.handleInput(allowedKeys[e.keyCode]);
 });
+
