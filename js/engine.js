@@ -97,6 +97,8 @@ var Engine = (function(global) {
         player.update();
     }
 
+    //Checks if enemy and player are in the same position, resets the player's 
+    // position if collision occurs.
     function checkCollisions() {
         allEnemies.forEach(function(enemy) {
             if (player.y - 10 === enemy.y && (enemy.x > player.x - 10 && enemy.x < player.x + 10)) {

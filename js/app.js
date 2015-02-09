@@ -7,6 +7,8 @@ var Enemy = function(name) {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     
+    //This function randomizes the row that the enemy appears on
+    //its called at the start of the game and when an enemy leaves the screen
     this.randomizeRow = function(){
         var rand = Math.random();
         var row;
@@ -35,7 +37,7 @@ Enemy.prototype.update = function(dt) {
     this.x = this.x + ((100 + this.speed) * dt);
     
     //Reset position of Enemy back to left side of play area
-    // and rerandomize speed
+    // and rerandomize speed and row it appears on
     if (this.x > 505) {
         this.x = -100;
         this.y = this.randomizeRow();
@@ -57,7 +59,6 @@ Enemy.prototype.render = function() {
 var Player = function (){
     this.initializePosition();
     this.sprite = 'images/char-boy.png';
-    this.lastMoveTime;
 }
 
 Player.prototype.update = function(){
@@ -73,9 +74,8 @@ Player.prototype.render = function(){
 };
 
 Player.prototype.handleInput = function(keyCode){
-    /* body... */
     
-    // TODO Comment
+    // Enable player movement and prevents player from leaving the playing area
     if (keyCode === 'right' && this.x != 404) {
         this.x = this.x + 101;
     } else if (keyCode === 'left' && this.x != 0) {
