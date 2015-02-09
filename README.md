@@ -13,3 +13,6 @@ The part of the Game that I was required to write consists of 3 functional piece
 
 3. Collision Detection
   * Reset the player's position to the start if enemy any player are within a certain distance to eachother, which is 10 pixels in the case of my implementation.
+
+Resources:
+* [Mozilla Developer Network Javascript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
